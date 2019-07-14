@@ -59,7 +59,7 @@ class Header extends Component {
 
                 <div className="jumbotron text-center">
                     <h1 className="display-4">Clicky Game</h1>
-                    <p className="lead">Score: {this.state.score}  //  Top Score: {this.state.topScore}</p>
+                    <p className="lead">Score: {this.props.score}  //  Top Score: {this.props.topScore}</p>
                     <p>Click on an image to earn points, but only click each image once.</p>
                 </div>
             

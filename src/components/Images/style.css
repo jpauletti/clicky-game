@@ -1,3 +1,7 @@
+.hide {
+    display: none;
+}
+
 .image-bg {
     background-size: cover;
     background-position: center;
