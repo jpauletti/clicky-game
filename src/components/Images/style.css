@@ -1,4 +1,29 @@
 .image-bg {
     background-size: cover;
-    
+    background-position: center;
+    height: 215px;
+    border-radius: 5px;
+}
+
+.image-bg:hover {
+    transform: scale(1.03);
+    transition: 0.2s;
+    border: 5px solid rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.hermione {
+    background-image: url("../../images/hermione-granger.jpg");
+}
+
+.neville {
+    background-image: url("../../images/neville-longbottom.jpg");
+}
+
+.malfoy {
+    background-image: url("../../images/draco-malfoy.jpg");
+}
+
+.snape {
+    background-image: url("../../images/snape.jpg");
 }

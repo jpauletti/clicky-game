@@ -11,6 +11,10 @@ class Images extends Component {
 
     }
 
+    state = {
+
+    }
+
     render() {
         return (
             <div class="row">
@@ -19,16 +23,24 @@ class Images extends Component {
                         <img class="image-bg img-fluid" src={image} />
                     </div>
                 ))} */}
-                <div class="col-md-4 image-bg">
-                    <img class="image-bg img-fluid" src={require("../../images/draco-malfoy.jpg")} />
+                <div class="col-md-3">
+                    <div class="image-bg malfoy"></div>
+                    {/* <img class="image-bg img-fluid" src={require("../../images/draco-malfoy.jpg")} /> */}
                 </div>
 
-                <div class="col-md-4 image-bg">
-                    <img class="image-bg img-fluid" src={require("../../images/neville-longbottom.jpg")} />
+                <div class="col-md-3">
+                    <div class="image-bg neville"></div>
+                    {/* <img class="image-bg img-fluid" src={require("../../images/neville-longbottom.jpg")} /> */}
                 </div>
 
-                <div class="col-md-4 image-bg">
-                    <img class="image-bg img-fluid" src={require("../../images/hermione-granger.jpg")} />
+                <div class="col-md-3">
+                    <div class="image-bg hermione"></div>
+                    {/* <img class="image-bg img-fluid" src={require("../../images/hermione-granger.jpg")} /> */}
+                </div>
+
+                <div class="col-md-3">
+                    <div class="image-bg snape"></div>
+                    {/* <img class="image-bg img-fluid" src={require("../../images/hermione-granger.jpg")} /> */}
                 </div>
 
             </div>
