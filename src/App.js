@@ -1,15 +1,17 @@
 import React from 'react';
 import logo from './logo.svg';
-import Navbar from './components/Navbar';
+import Header from './components/Header';
 import Images from './components/Images';
 import './App.css';
 
 function App() {
   return (
-    <div class="container">
-      <Navbar />
+    <>
+    <Header />
+    <div className="container">
       <Images />
     </div>
+    </>
 
 
 

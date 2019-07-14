@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import "./style.css";
 
-class Navbar extends Component {
+class Header extends Component {
     // Setting component's initial state
+    state = {
+        score: 0,
+        topScore: 0
+    }
     // state = {
     //     firstName: "",
     //     lastName: ""
@@ -53,9 +57,9 @@ class Navbar extends Component {
             //     </div>
             // </nav>
 
-                <div class="jumbotron text-center">
-                    <h1 class="display-4">Clicky Game</h1>
-                    <p class="lead">Score: 0  //  Top Score: 0</p>
+                <div className="jumbotron text-center">
+                    <h1 className="display-4">Clicky Game</h1>
+                    <p className="lead">Score: {this.state.score}  //  Top Score: {this.state.topScore}</p>
                     <p>Click on an image to earn points, but only click each image once.</p>
                 </div>
             
@@ -93,4 +97,4 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+export default Header;
