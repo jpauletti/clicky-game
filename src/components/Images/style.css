@@ -11,9 +11,14 @@
 
 .image-bg:hover {
     transform: scale(1.03);
-    transition: 0.2s;
+    transition: 0.3s;
+    transition-timing-function: ease-in-out;
     border: 5px solid rgba(0,0,0,0.2);
     cursor: pointer;
+}
+
+.message {
+    min-height: 24px;
 }
 
 .hermione {

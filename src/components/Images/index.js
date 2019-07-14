@@ -18,55 +18,73 @@ class Images extends Component {
 
         // has this image been clicked already?
         if (this.state[character]) {
-            console.log("already clicked it")
-            // update score
-            this.props.scoreReset();
-            score = 0;
-
-            // game over - message - guessed wrong
-            this.setState({
-                status: "You already clicked that image! Game over."
-            });
-            // change color to red temporarily
-            document.getElementsByClassName("message")[0].style.color = "red";
-            setTimeout(function () {
-                document.getElementsByClassName("message")[0].style.color = "#212529";
-            }, 250);
-            // after message/gameover, restart game (randomize images, reset state)
+            this.alreadyClicked();
 
         } else {
-            console.log("good job - new image")
-            // set state to true
-            this.setState({
-                [character]: true
-            });
-
-            // increase score by one
-            this.props.scoreUp();
-            score++;
-            // update topScore if your new score is higher
-            this.props.updateTopScore(score);
-
-            // message - guessed right
-            this.setState({
-                status: "Good job!"
-            });
-
-            // change color to green temporarily
-            document.getElementsByClassName("message")[0].style.color = "green";
-            setTimeout(function() {
-                document.getElementsByClassName("message")[0].style.color = "#212529";
-            }, 250);
-
-            // randomize image placement
+            this.firstClick(character);
 
         }
 
     }
 
+
+    firstClick = (character) => {
+        console.log("good job - new image")
+        // set state to true
+        this.setState({
+            [character]: true
+        });
+
+        // increase score by one
+        this.props.scoreUp();
+        score++;
+        // update topScore if your new score is higher
+        this.props.updateTopScore(score);
+
+        // message - guessed right
+        this.setState({
+            status: "Good job!"
+        });
+
+        // change color to green temporarily
+        document.getElementsByClassName("message")[0].style.color = "green";
+        setTimeout(function () {
+            document.getElementsByClassName("message")[0].style.color = "#212529";
+        }, 250);
+
+        // randomize image placement
+    }
+
+
+    alreadyClicked = () => {
+        console.log("already clicked it")
+        // update score
+        this.props.scoreReset();
+        score = 0;
+
+        // game over - message - guessed wrong
+        this.setState({
+            status: "You already clicked that image! Game over."
+        });
+        // change color to red temporarily
+        document.getElementsByClassName("message")[0].style.color = "red";
+        setTimeout(function () {
+            document.getElementsByClassName("message")[0].style.color = "#212529";
+        }, 250);
+        // after message/gameover, restart game (randomize images, reset state)
+        // reset image clicked states
+        this.setState({
+            malfoy: false,
+            neville: false,
+            hermione: false,
+            snape: false
+        });
+        console.log(this.state);
+    }
+
     state = {
         status: "",
-        draco: false,
+        malfoy: false,
         neville: false,
         hermione: false,
         snape: false
