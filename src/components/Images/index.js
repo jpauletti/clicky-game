@@ -5,13 +5,36 @@ import "./style.css";
 let score = 0;
 let gameOver= false;
 var characters = [
-    "harry", "malfoy", "hermione", "snape", "neville", "tonks", "remus", "ron", "dumbledore", "luna", "mad-eye", "fleur"
+    "harry", "malfoy", "hermione", "snape", "neville", "tonks", "remus", "ron", "dumbledore", "luna", "madEye", "fleur"
 ]
 var randomizedChars = characters;
 
 console.log(randomizedChars);
 
 class Images extends Component {
+
+    state = {
+        status: "",
+        // malfoy: false,
+        // neville: false,
+        // hermione: false,
+        // snape: false,
+        characters: {
+            malfoy: false,
+            neville: false,
+            hermione: false,
+            snape: false,
+            neville: false,
+            tonks: false,
+            remus: false,
+            ron: false,
+            dumbledore: false,
+            luna: false,
+            madEye: false,
+            fleur: false
+        }
+    }
+
 
     shuffleArray = array => {
         for (var i = array.length - 1; i > 0; i--) {
@@ -26,13 +49,16 @@ class Images extends Component {
     checkClickedAll = () => {
         // check to see if all characters have been clicked
         let clickedAll = false;
+        console.log(this.state.characters);
         for (var key in this.state.characters) {
             if (this.state.characters[key] === false) {
                 console.log(false); 
+                console.log("not all clicked")
                 return false;
             }
         }
         clickedAll = true;
+        console.log("all clicked")
         return clickedAll;
 
     }
@@ -72,6 +98,16 @@ class Images extends Component {
         }, 250);
     }
 
+
+    winningMessage = (message) => {
+        // change message to tell user they won
+        this.setState({
+            status: message
+        });
+        document.getElementsByClassName("message")[0].classList.add("winning");
+    }
+
+
     userChoseImage = event => {
         console.log("clicked an image");
         // console.log(this.props);
@@ -79,9 +115,10 @@ class Images extends Component {
         // console.log(event.target);
         // console.log(event.target.id);
         let character = event.target.id;
+        // console.log(character)
         let score = this.props.score;
 
-        console.log(this.state.characters);
+        // console.log(this.state.characters);
 
         // has this image been clicked already?
         if (this.state.characters[character]) {
@@ -96,8 +133,6 @@ class Images extends Component {
 
 
     firstClick = (character) => {
-        gameOver = false;
-        console.log("good job - new image")
         // set state to true
         let updatedChars = this.state.characters;
         updatedChars[character] = true;
@@ -112,20 +147,25 @@ class Images extends Component {
         // update topScore if your new score is higher
         this.props.updateTopScore(score);
 
-        // message - guessed right
-        this.setState({
-            status: "Good job!"
-        });
+        // has user clicked all the images?
+        if (this.checkClickedAll()) {
+            // show winning message
+            this.winningMessage("YOU WON!");
+        } else {
+            gameOver = false;
+            console.log("good job - new image")
 
-        // change color to green temporarily
-        // document.getElementsByClassName("message")[0].style.color = "green";
-        // setTimeout(function () {
-        //     document.getElementsByClassName("message")[0].style.color = "#212529";
-        // }, 250);
-        this.messageChange("green");
+            // message - guessed right
+            this.setState({
+                status: "Good job!"
+            });
 
-        // randomize image placement
-        this.randomizeCharacters();
+            // change color to green temporarily
+            this.messageChange("green");
+
+            // randomize image placement
+            this.randomizeCharacters();
+        }
     }
 
 
@@ -139,11 +179,8 @@ class Images extends Component {
         this.setState({
             status: "You already clicked that image! Click an image to start the game again."
         });
+
         // change color to red temporarily
-        // document.getElementsByClassName("message")[0].style.color = "red";
-        // setTimeout(function () {
-        //     document.getElementsByClassName("message")[0].style.color = "#212529";
-        // }, 250);
         this.messageChange("red");
         // after message/gameover, restart game (randomize images, reset state)
         // reset image clicked states
@@ -152,7 +189,15 @@ class Images extends Component {
                 malfoy: false,
                 neville: false,
                 hermione: false,
-                snape: false
+                snape: false,
+                neville: false,
+                tonks: false,
+                remus: false,
+                ron: false,
+                dumbledore: false,
+                luna: false,
+                madEye: false,
+                fleur: false
             }
         });
 
@@ -162,26 +207,13 @@ class Images extends Component {
         this.randomizeCharacters();
     }
 
-    state = {
-        status: "",
-        // malfoy: false,
-        // neville: false,
-        // hermione: false,
-        // snape: false,
-        characters: {
-            malfoy: false,
-            neville: false,
-            hermione: false,
-            snape: false
-        }
-    }
 
     render() {
         return (
             <>
                 <div className="row text-center mb-4">
                     <div className="col-md-12 font-weight-bold message" onChange={this.messageChange}>
-                        {gameOver ? "GAME OVER." : ""}<br/>
+                        {gameOver ? <div>GAME OVER.</div> : ""}
                         {this.state.status}
                     </div>
                 </div>
@@ -191,22 +223,6 @@ class Images extends Component {
                         <div className={`image-bg ${character}`} id={character} data-clicked={this.state.characters[character]} onClick={this.userChoseImage}></div>
                     </div>
                     ))}
-                    {/* <div className="col-md-3">
-                        <div className="image-bg malfoy" id="malfoy" data-clicked={this.state.malfoy} onClick={this.userChoseImage}></div>
-                    </div>
-
-                    <div className="col-md-3">
-                        <div className="image-bg neville" id="neville" data-clicked={this.state.neville} onClick={this.userChoseImage}></div>
-                    </div>
-
-                    <div className="col-md-3">
-                        <div className="image-bg hermione" id="hermione" data-clicked={this.state.hermione} onClick={this.userChoseImage}></div>
-                    </div>
-
-                    <div className="col-md-3">
-                        <div className="image-bg snape" id="snape" data-clicked={this.state.snape} onClick={this.userChoseImage}></div>
-                    </div> */}
-
                 </div>
             </>
         );

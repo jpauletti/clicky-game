@@ -2,6 +2,7 @@
     margin-bottom: 1.2rem;
     padding-top: 2em;
     padding-bottom: 2rem;
+    border-radius: 0px;
     background-color: #740001;
     color: white;
 }
@@ -29,8 +30,27 @@
     margin-bottom: 30px;
 }
 
-.message {
+/* .message {
     min-height: 48px;
+} */
+
+.winning {
+    color: black !important;
+    background-color: #ffa701;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+@media (max-width: 767px) and (min-width: 349px) {
+    .col-md-3 {
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 348px) {
+    .col-md-3 {
+        width: 100% !important;
+    }
 }
 
 .hermione {
@@ -69,7 +89,7 @@
     background-image: url("../../images/luna.jpg");
 }
 
-.mad-eye {
+.madEye {
     background-image: url("../../images/mad-eye.jpg");
 }
 
