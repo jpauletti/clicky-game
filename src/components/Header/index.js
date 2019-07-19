@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./style.css";
 
 class Header extends Component {
-    // Setting component's initial state
     state = {
         score: 0,
         topScore: 0
