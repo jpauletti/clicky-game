@@ -1,31 +1,10 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import Header from './components/Header';
 import Images from './components/Images';
 import './App.css';
 
-// function App() {
-//   return (
-//     <>
-//     <Header />
-//     <div className="container">
-//       <Images />
-//     </div>
-//     </>
-//   );
-// }
-
-// export default App;
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-
-  //   this.state = {
-  //     score: 0,
-  //     topScore: 0
-  //   };
-  // }
 
   state = {
     score: 0,
