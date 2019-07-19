@@ -20,7 +20,7 @@
 
 .image-bg:hover {
     transform: scale(1.03);
-    transition: 0.3s;
+    transition: 0.25s;
     transition-timing-function: ease-in-out;
     border: 5px solid rgba(0,0,0,0.2);
     cursor: pointer;

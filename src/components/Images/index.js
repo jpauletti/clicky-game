@@ -9,7 +9,7 @@ var characters = [
 ]
 var randomizedChars = characters;
 
-console.log(randomizedChars);
+// console.log(randomizedChars);
 
 class Images extends Component {
 
@@ -49,10 +49,10 @@ class Images extends Component {
     checkClickedAll = () => {
         // check to see if all characters have been clicked
         let clickedAll = false;
-        console.log(this.state.characters);
+        // console.log(this.state.characters);
         for (var key in this.state.characters) {
             if (this.state.characters[key] === false) {
-                console.log(false); 
+                // console.log(false); 
                 console.log("not all clicked")
                 return false;
             }
@@ -90,12 +90,14 @@ class Images extends Component {
         // console.log(randomizedChars);
     }
 
-    messageChange = (color) => {
+    messageChange = (color, gameover) => {
         // change color to green temporarily
         document.getElementsByClassName("message")[0].style.color = color;
-        setTimeout(function () {
-            document.getElementsByClassName("message")[0].style.color = "#212529";
-        }, 250);
+        if (!gameover) {
+            setTimeout(function () {
+                document.getElementsByClassName("message")[0].style.color = "#212529";
+            }, 250);
+        }
     }
 
 
@@ -109,14 +111,13 @@ class Images extends Component {
 
 
     userChoseImage = event => {
-        console.log("clicked an image");
+        // console.log("clicked an image");
         // console.log(this.props);
         // console.log(event);
         // console.log(event.target);
         // console.log(event.target.id);
         let character = event.target.id;
         // console.log(character)
-        let score = this.props.score;
 
         // console.log(this.state.characters);
 
@@ -153,7 +154,7 @@ class Images extends Component {
             this.winningMessage("YOU WON!");
         } else {
             gameOver = false;
-            console.log("good job - new image")
+            // console.log("good job - new image")
 
             // message - guessed right
             this.setState({
@@ -161,7 +162,7 @@ class Images extends Component {
             });
 
             // change color to green temporarily
-            this.messageChange("green");
+            this.messageChange("green", gameOver);
 
             // randomize image placement
             this.randomizeCharacters();
@@ -170,7 +171,7 @@ class Images extends Component {
 
 
     alreadyClicked = () => {
-        console.log("already clicked it")
+        // console.log("already clicked it")
         // update score
         this.props.scoreReset();
         score = 0;
@@ -180,8 +181,11 @@ class Images extends Component {
             status: "You already clicked that image! Click an image to start the game again."
         });
 
+        gameOver = true;
+
         // change color to red temporarily
-        this.messageChange("red");
+        this.messageChange("red", gameOver);
+        // document.getElementsByClassName("message")[0].style.color = "red";
         // after message/gameover, restart game (randomize images, reset state)
         // reset image clicked states
         this.setState({
@@ -201,7 +205,7 @@ class Images extends Component {
             }
         });
 
-        gameOver = true;
+        // gameOver = true;
 
         // randomize characters/images
         this.randomizeCharacters();
@@ -217,7 +221,7 @@ class Images extends Component {
                         {this.state.status}
                     </div>
                 </div>
-                <div className="row image-board ml-auto mr-auto">
+                <div className="row image-board ml-auto mr-auto mb-4">
                     {randomizedChars.map(character => (
                     <div className="col-md-3 char" key={character}>
                         <div className={`image-bg ${character}`} id={character} data-clicked={this.state.characters[character]} onClick={this.userChoseImage}></div>
